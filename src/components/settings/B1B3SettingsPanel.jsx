@@ -77,7 +77,7 @@ function B1B3SettingsPanel({ label, params, setParams, showDirection }) {
 
       {/* Тип таблички */}
       <label className="block mb-4">
-        Тип таблички:
+        Призначення веломаршруту:
         <select
           value={params.tableType}
           onChange={handleTableTypeChange}
