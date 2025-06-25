@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'RoadUA-Bold';
+  src: url('/fonts/RoadUA-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
