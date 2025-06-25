@@ -3,18 +3,35 @@ function B1B3SettingsPanel({ label, params, setParams, showDirection }) {
     const options = [];
 
     if (params.tableType !== "seasonal") {
-      options.push(<option key="national" value="national">Національний</option>);
+      options.push(
+        <option key="national" value="national">Національний</option>
+      );
     }
 
-    options.push(<option key="regional" value="regional">Регіональний</option>);
-    options.push(<option key="local" value="local">Локальний</option>);
+    if (label.includes("В2")) {
+      // Для В2 — обʼєднаний варіант
+      options.push(
+        <option key="regional-local" value="regional">Регіональний/Локальний</option>
+      );
+    } else {
+      // Для В1, В3 — звичайні варіанти
+      options.push(
+        <option key="regional" value="regional">Регіональний</option>
+      );
+      options.push(
+        <option key="local" value="local">Локальний</option>
+      );
+    }
 
     if (params.tableType === "permanent") {
-      options.push(<option key="eurovelo" value="eurovelo">Евровело</option>);
+      options.push(
+        <option key="eurovelo" value="eurovelo">Eurovelo 4</option>
+      );
     }
 
     return options;
   };
+
 
   const handleTableTypeChange = (e) => {
     const tableType = e.target.value;
@@ -66,15 +83,15 @@ function B1B3SettingsPanel({ label, params, setParams, showDirection }) {
           onChange={handleTableTypeChange}
           className="w-full mt-1 p-2 border rounded"
         >
-          <option value="permanent">Постійна</option>
-          <option value="seasonal">Сезонна</option>
-          <option value="temporary">Тимчасова</option>
+          <option value="permanent">Постійний</option>
+          <option value="seasonal">Сезонний</option>
+          <option value="temporary">Тимчасовий</option>
         </select>
       </label>
 
       {/* Тип номера маршруту */}
       <label className="block mb-4">
-        Тип номера маршруту:
+        Рівень веломаршруту:
         <select
           value={params.numberType}
           onChange={handleNumberTypeChange}
@@ -95,7 +112,7 @@ function B1B3SettingsPanel({ label, params, setParams, showDirection }) {
           onChange={handleRouteNumberChange}
           disabled={params.numberType === "eurovelo"}
           className="w-full mt-1 p-2 border rounded"
-          placeholder="12"
+          placeholder="Введіть цифрове значення від 1 до 99"
         />
       </label>
 

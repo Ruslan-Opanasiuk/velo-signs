@@ -78,12 +78,13 @@ function B1({ params }) {
       {/* Текст з номером (не показуємо для eurovelo, якщо треба прибрати) */}
       <text
         x={mainConfig.outerWidth / 2}
-        y={46 + rectConfig.outerHeight / 2 + 7}
+        y={46 + rectConfig.outerHeight / 2 + 6}
         fill={textColor}
-        fontSize={45 / 0.7}
+        fontSize={(params.numberType === "national" ? 40 : 45) / 0.7}
         fontFamily="RoadUA-Bold"
         textAnchor="middle"
         dominantBaseline="middle"
+        style={{ fontFeatureSettings: '"ss02"' }}
       >
         {params.routeNumber}
       </text>

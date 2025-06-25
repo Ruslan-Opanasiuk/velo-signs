@@ -8,12 +8,9 @@ import { ColorMap } from "../config/ColorMap";
 
 function B2({ params }) {
   // Розпакування кольорів за типами
-  const { table, number } = ColorMap;
-  const { bg: tableBg, fg: tableFg } = table[params.tableType];
-   const { bg: numberBg } = number[params.numberType];
-  const textColor = params.tableType === "seasonal"
-    ? "#F5C30D"
-    : number[params.numberType].text;
+  const { table } = ColorMap;
+  const { bg: tableBg, fg: tableFg, textB2: textColor} = table[params.tableType];
+
   // Вибір конфігів
   const mainConfig = RectConfigs["B1"];
   const circleConfig = CircleConfigs["E5B1"];
@@ -79,7 +76,7 @@ function B2({ params }) {
       ) : params.numberType === "eurovelo" ? (
         <path
           d={PathConfigs.eurovelo.d}
-          fill={numberBg}
+          fill={"#F5C30D"}
           transform={`
             translate(${xShift1}, 156)
             scale(${scale1})
@@ -107,10 +104,11 @@ function B2({ params }) {
         x={mainConfig.outerWidth/2}
         y={160 + rectConfig.outerHeight/2 + 6} //ПІДПРАВИТИ
         fill={textColor}
-        fontSize={45 / 0.7}
+        fontSize={(params.numberType === "national" ? 40 : 45) / 0.7}
         fontFamily="RoadUA-Bold"
         textAnchor="middle"
         dominantBaseline="middle"
+        style={{ fontFeatureSettings: '"ss02"' }}
       >
         {params.routeNumber}
       </text>
