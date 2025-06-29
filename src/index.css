@@ -7,3 +7,10 @@
   src: url('/fonts/RoadUA-Bold.ttf') format('truetype');
   font-weight: bold;
 }
+
+@font-face {
+  font-family: 'RoadUA-Medium';
+  src: url('/fonts/RoadUA-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
