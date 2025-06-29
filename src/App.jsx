@@ -2,15 +2,20 @@ import { useState } from "react";
 import SignSelector from "./components/SignSelector";
 import SignPreview from "./components/SignPreview";
 import B1B3SettingsPanel from "./components/settings/B1B3SettingsPanel";
+import B4B6SettingsPanel from "./components/settings/B4B6SettingsPanel";
 
 function App() {
   const [signType, setSignType] = useState("В1");
 
   const [params, setParams] = useState({
+    // для В1–В3
     tableType: "permanent",
     numberType: "national",
     routeNumber: "",
     direction: "straight",
+    // для В4–В6
+    mainText: "",
+    subText: "",
   });
 
   return (
@@ -31,6 +36,14 @@ function App() {
               params={params}
               setParams={setParams}
               showDirection={signType !== "В2"}
+            />
+          )}
+
+          {["В4", "В5", "В6"].includes(signType) && (
+            <B4B6SettingsPanel
+              label={`Налаштування ${signType}`}
+              params={params}
+              setParams={setParams}
             />
           )}
         </div>
